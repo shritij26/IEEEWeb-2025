@@ -16,7 +16,7 @@ export const saveSubs = async (req, res, next) => {
 
   const found = await Subs.findOne({ endpoint: subscription.endpoint });
   if (found) {
-    return next(new expressError(400, "Subscription already exists"));
+    return res.status(400).json({ success: false, message: "Subscription already exists" });
   }
 
   const newSubs = new Subs(subscription);
